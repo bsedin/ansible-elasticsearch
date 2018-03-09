@@ -1,0 +1,1 @@
+# Elasticsearch role for ansible

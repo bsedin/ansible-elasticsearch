@@ -1,0 +1,40 @@
+---
+- name: ensure elasticsearch storage dir
+  file:
+    dest: '{{ item }}'
+    state: directory
+    group: 1000
+    mode: g+rwx
+  with_items:
+    - '{{ elasticsearch_data_dir }}'
+
+- name: run elasticsearch container
+  docker_container:
+    state: started
+    restart: yes
+    recreate: yes
+    name: '{{ elasticsearch_container }}'
+    image: docker.elastic.co/elasticsearch/elasticsearch:{{ elasticsearch_version }}
+    restart_policy: always
+    env:
+      ES_JAVA_OPTS: -Xms{{ elasticsearch_heap_size }} -Xmx{{ elasticsearch_heap_size }}
+      TAKE_FILE_OWNERSHIP: true
+      bootstrap.memory_lock: '{{ elasticsearch_cluster_name }}'
+      cluster.name: '{{ elasticsearch_cluster_name }}'
+      network.host: 0.0.0.0
+      network.publish_host: '{{ elasticsearch_network_publish_host }}'
+      network.publish_port: '{{ elasticsearch_network_publish_port }}'
+      transport.host: 0.0.0.0
+      transport.publish_host: '{{ elasticsearch_transport_publish_host }}'
+      transport.publish_port: '{{ elasticsearch_transport_publish_port }}'
+      node.master: '{{ elasticsearch_node_master }}'
+      node.data: '{{ elasticsearch_node_data }}'
+      node.ingest: '{{ elasticsearch_node_ingest }}'
+      node.name: '{{ elasticsearch_node_name }}'
+      xpack.security.enabled: '{{ elasticsearch_xpack_security_enabled }}'
+      discovery.zen.minimum_master_nodes: '{{ elasticsearch_discovery_zen_minimum_master_nodes }}'
+      discovery.zen.ping.unicast.hosts: '{{ elasticsearch_discovery_zen_ping_unicast_hosts }}'
+    published_ports: '{{ elasticsearch_published_ports }}'
+    volumes:
+      - '{{ elasticsearch_data_dir }}:/usr/share/elasticsearch/data'
+    ulimits: '{{ elasticsearch_ulimits }}'
