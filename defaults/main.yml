@@ -9,13 +9,12 @@ elasticsearch_bootstrap_memory_lock: 'true'
 elasticsearch_node_master: 'true'
 elasticsearch_node_data: 'true'
 elasticsearch_node_ingest: 'true'
-elasticsearch_node_name: '{{ hostname }}'
+elasticsearch_node_name:
 elasticsearch_xpack_security_enabled: 'false'
 elasticsearch_discovery_zen_minimum_master_nodes: 1
-elasticsearch_discovery_zen_ping_unicast_hosts: []
-elasticsearch_network_publish_host: '{{ docker_ip }}'
-elasticsearch_network_publish_port: '{{ docker_ip }}'
-elasticsearch_transport_publish_host: '{{ docker_ip }}'
+elasticsearch_discovery_zen_ping_unicast_hosts: ''
+elasticsearch_network_publish_host:
+elasticsearch_transport_publish_host:
 elasticsearch_transport_publish_port: 9300
 elasticsearch_published_ports: []
 elasticsearch_ulimits:
