@@ -18,6 +18,7 @@ elasticsearch_transport_publish_host:
 elasticsearch_transport_publish_port: 9300
 elasticsearch_links: []
 elasticsearch_published_ports: []
+elasticsearch_hostname: '{{ elasticsearch_container_name }}'
 elasticsearch_ulimits:
   - nofile:65536:65536
   - memlock:-1:-1
