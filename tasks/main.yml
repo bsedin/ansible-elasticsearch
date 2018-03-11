@@ -34,6 +34,7 @@
       discovery.zen.minimum_master_nodes: '{{ elasticsearch_discovery_zen_minimum_master_nodes }}'
       discovery.zen.ping.unicast.hosts: '{{ elasticsearch_discovery_zen_ping_unicast_hosts }}'
     published_ports: '{{ elasticsearch_published_ports }}'
+    links: '{{ elasticsearch_links }}'
     volumes:
       - '{{ elasticsearch_data_dir }}:/usr/share/elasticsearch/data'
     ulimits: '{{ elasticsearch_ulimits }}'
