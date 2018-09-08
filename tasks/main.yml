@@ -13,7 +13,7 @@
     state: started
     restart: yes
     recreate: no
-    name: host-sys-flags
+    name: '{{ elasticsearch_container_name }}-host-sys-flags'
     image: alpine
     detach: no
     interactive: no
