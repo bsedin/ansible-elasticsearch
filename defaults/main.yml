@@ -1,5 +1,5 @@
 ---
-elasticsearch_version: 6.2.2
+elasticsearch_version: 6.4.0
 elasticsearch_container_name: elasticsearch
 elasticsearch_image: docker.elastic.co/elasticsearch/elasticsearch
 elasticsearch_cluster_name: es01
