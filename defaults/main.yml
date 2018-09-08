@@ -3,7 +3,7 @@ elasticsearch_version: 6.4.0
 elasticsearch_container_name: elasticsearch
 elasticsearch_image: docker.elastic.co/elasticsearch/elasticsearch
 elasticsearch_cluster_name: es01
-elasticsearch_data_dir: /var/lib/elasticsearch/data
+elasticsearch_data_dir: /var/lib/elasticsearch/{{ elasticsearch_container_name }}/data
 elasticsearch_heap_size: 2g
 elasticsearch_bootstrap_memory_lock: 'true'
 elasticsearch_node_master: 'true'
