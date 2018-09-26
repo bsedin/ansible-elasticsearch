@@ -48,6 +48,7 @@
       node.ingest: '{{ elasticsearch_node_ingest }}'
       node.name: '{{ elasticsearch_node_name }}'
       xpack.security.enabled: '{{ elasticsearch_xpack_security_enabled }}'
+      discovery.type: '{{ elasticsearch_discovery_type }}'
       discovery.zen.minimum_master_nodes: '{{ elasticsearch_discovery_zen_minimum_master_nodes }}'
       discovery.zen.ping.unicast.hosts: '{{ elasticsearch_discovery_zen_ping_unicast_hosts }}'
     published_ports: '{{ elasticsearch_published_ports }}'
