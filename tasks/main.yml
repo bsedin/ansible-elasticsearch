@@ -8,21 +8,16 @@
   with_items:
     - '{{ elasticsearch_data_dir }}'
 
-- name: run host configuration container
-  docker_container:
-    state: started
-    restart: yes
-    recreate: no
-    name: '{{ elasticsearch_container_name }}-host-sys-flags'
-    image: alpine
-    detach: no
-    interactive: no
-    privileged: true
-    volumes:
-      - /proc:/hostfs/proc
-      - /sys:/hostfs/sys
-    command: >
-      sh -c "echo 262144 > /hostfs/proc/sys/vm/max_map_count"
+- name: set sysctls on host
+  sysctl:
+    name: '{{ item.key }}'
+    value: '{{ item.value }}'
+    sysctl_set: yes
+    state: present
+    reload: yes
+  with_items:
+    - key: vm.max_map_count
+      value: 262144
 
 - name: run elasticsearch container
   docker_container:
