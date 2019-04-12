@@ -1,5 +1,5 @@
 ---
-elasticsearch_version: 6.4.0
+elasticsearch_version: 7.0.0
 elasticsearch_container_name: elasticsearch
 elasticsearch_image: docker.elastic.co/elasticsearch/elasticsearch:{{ elasticsearch_version }}
 elasticsearch_cluster_name: es01
@@ -14,6 +14,7 @@ elasticsearch_xpack_security_enabled: 'false'
 elasticsearch_discovery_type: zen
 elasticsearch_discovery_zen_minimum_master_nodes: 1
 elasticsearch_discovery_zen_ping_unicast_hosts: ''
+elasticsearch_cluster_initial_master_nodes: '{{ elasticsearch_node_name }}'
 elasticsearch_network_publish_host: '{{ elasticsearch_container_name }}'
 elasticsearch_transport_publish_host: '{{ elasticsearch_container_name }}'
 elasticsearch_transport_publish_port: 9300
