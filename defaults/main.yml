@@ -25,3 +25,5 @@ elasticsearch_hostname: '{{ elasticsearch_container_name }}'
 elasticsearch_ulimits:
   - nofile:65536:65536
   - memlock:-1:-1
+elasticsearch_container_log_driver: ''
+elasticsearch_container_log_opt: {}

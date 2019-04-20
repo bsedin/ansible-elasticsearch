@@ -53,3 +53,5 @@
     volumes:
       - '{{ elasticsearch_data_dir }}:/usr/share/elasticsearch/data'
     ulimits: '{{ elasticsearch_ulimits }}'
+    log_driver: '{{ elasticsearch_container_log_driver }}'
+    log_opt: '{{ elasticsearch_container_log_opt }}'
