@@ -12,13 +12,12 @@ elasticsearch_node_ingest: 'true'
 elasticsearch_node_name: '{{ elasticsearch_container_name }}'
 elasticsearch_xpack_security_enabled: 'false'
 elasticsearch_discovery_type: zen
-elasticsearch_discovery_zen_minimum_master_nodes: 1
+elasticsearch_discovery_zen_minimum_master_nodes: '1'
 elasticsearch_discovery_zen_ping_unicast_hosts: ''
 elasticsearch_cluster_initial_master_nodes: '{{ elasticsearch_node_name }}'
 elasticsearch_network_publish_host: '{{ elasticsearch_container_name }}'
 elasticsearch_transport_publish_host: '{{ elasticsearch_container_name }}'
-elasticsearch_transport_publish_port: 9300
-elasticsearch_links: []
+elasticsearch_transport_publish_port: '9300'
 elasticsearch_networks: []
 elasticsearch_published_ports: []
 elasticsearch_hostname: '{{ elasticsearch_container_name }}'
@@ -27,3 +26,25 @@ elasticsearch_ulimits:
   - memlock:-1:-1
 elasticsearch_container_log_driver: ''
 elasticsearch_container_log_opt: {}
+
+elasticsearch_additional_env: {}
+elasticsearch_default_env:
+  ES_JAVA_OPTS: -Xms{{ elasticsearch_heap_size }} -Xmx{{ elasticsearch_heap_size }}
+  TAKE_FILE_OWNERSHIP: 'true'
+  bootstrap.memory_lock: '{{ elasticsearch_bootstrap_memory_lock }}'
+  cluster.name: '{{ elasticsearch_cluster_name }}'
+  network.host: 0.0.0.0
+  network.publish_host: '{{ elasticsearch_network_publish_host }}'
+  transport.host: 0.0.0.0
+  transport.publish_host: '{{ elasticsearch_transport_publish_host }}'
+  transport.publish_port: '{{ elasticsearch_transport_publish_port }}'
+  node.master: '{{ elasticsearch_node_master }}'
+  node.data: '{{ elasticsearch_node_data }}'
+  node.ingest: '{{ elasticsearch_node_ingest }}'
+  node.name: '{{ elasticsearch_node_name }}'
+  xpack.security.enabled: '{{ elasticsearch_xpack_security_enabled }}'
+  discovery.type: '{{ elasticsearch_discovery_type }}'
+  discovery.zen.minimum_master_nodes: '{{ elasticsearch_discovery_zen_minimum_master_nodes }}'
+  discovery.zen.ping.unicast.hosts: '{{ elasticsearch_discovery_zen_ping_unicast_hosts }}'
+  cluster.initial_master_nodes: '{{ elasticsearch_cluster_initial_master_nodes }}'
+elasticsearch_env: '{{ elasticsearch_default_env | combine(elasticsearch_additional_env) }}'
