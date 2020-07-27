@@ -1,5 +1,5 @@
 ---
-elasticsearch_version: 7.0.0
+elasticsearch_version: 7.8.1-amd64
 elasticsearch_container_name: elasticsearch
 elasticsearch_image: docker.elastic.co/elasticsearch/elasticsearch:{{ elasticsearch_version }}
 elasticsearch_cluster_name: es01
@@ -10,7 +10,6 @@ elasticsearch_node_master: 'true'
 elasticsearch_node_data: 'true'
 elasticsearch_node_ingest: 'true'
 elasticsearch_node_name: '{{ elasticsearch_container_name }}'
-elasticsearch_xpack_security_enabled: 'false'
 elasticsearch_discovery_type: zen
 elasticsearch_discovery_zen_minimum_master_nodes: '1'
 elasticsearch_discovery_zen_ping_unicast_hosts: ''
@@ -42,7 +41,6 @@ elasticsearch_default_env:
   node.data: '{{ elasticsearch_node_data }}'
   node.ingest: '{{ elasticsearch_node_ingest }}'
   node.name: '{{ elasticsearch_node_name }}'
-  xpack.security.enabled: '{{ elasticsearch_xpack_security_enabled }}'
   discovery.type: '{{ elasticsearch_discovery_type }}'
   discovery.zen.minimum_master_nodes: '{{ elasticsearch_discovery_zen_minimum_master_nodes }}'
   discovery.zen.ping.unicast.hosts: '{{ elasticsearch_discovery_zen_ping_unicast_hosts }}'
